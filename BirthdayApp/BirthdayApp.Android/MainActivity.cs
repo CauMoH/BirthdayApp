@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using BirthdayApp.Api;
 using Prism;
 using Prism.Ioc;
 
@@ -25,7 +26,7 @@ namespace BirthdayApp.Droid
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Register any platform specific implementations
+            
         }
     }
 }

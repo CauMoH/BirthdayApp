@@ -1,11 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              x:Class="BirthdayApp.Views.MainPage"
+             BindingContextChanged="OnBindingContextChanged"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"
+                HorizontalOptions="Start"
+                Margin="10"
+                Text="Загрузить друзей"
+                Command="{Binding LoadFriendsCommand}"/>
+        
+        <BoxView Color="Red"
+                 Margin="10"
+                 Grid.Row="0"
+                 WidthRequest="20"
+                 HeightRequest="10"
+                 HorizontalOptions="End"
+                 CornerRadius="50"
+                 x:Name="AuthStatusBox"/>
+
+        <ListView Margin="0,20,0,0"
+                  Grid.Row="2"
+                  ItemsSource="{Binding Friends}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Image Grid.Column="0"
+                                   Margin="10,0,0,0"
+                                   Source="{Binding Photo}"/>
+
+                            <Label Grid.Column="1"
+                                   Margin="10,0,5,0"
+                                   VerticalOptions="Center"
+                                   Text="{Binding FullName}"
+                                   LineBreakMode="WordWrap"
+                                   FontSize = "15"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
 
 </ContentPage>
